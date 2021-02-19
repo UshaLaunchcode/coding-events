@@ -16,7 +16,7 @@ public class EventData {
         return events.values();
     }
     //get a single event
-    public static Event getBYId(int id){
+    public static Event getById(int id){
         return events.get(id);
     }
     //add an event
