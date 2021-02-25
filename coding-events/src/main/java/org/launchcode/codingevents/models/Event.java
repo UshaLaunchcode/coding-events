@@ -1,7 +1,5 @@
 package org.launchcode.codingevents.models;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 public class Event {
@@ -20,15 +18,51 @@ public class Event {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    public Event(String name, String description, String contactEmail) {
+    //Add a field to collect information about where the event will take place. This field should not be null or blank.
+
+    @NotNull(message="Location is required")
+    @NotBlank(message="Location is required")
+    private String location;
+
+   // Add a field to collect information about whether an attendee must register for the event or not.
+   // For the purposes of validation practice, make this field only able to be marked as true.
+
+    @AssertTrue(message="This event must have attendees register.")
+    private boolean shouldRegister = true;
+
+    //Add a field to collect information about the number of attendees for the event.
+    //Valid values for this field should be any number over zero.
+    @NotNull(message = "At least one attendee is required.")
+    @Min(value=1, message = "At least one attendee is required.")
+    private Integer numOfAttendees;
+
+    @NotNull(message = "Must have # of food courses between 1 and 3")
+    @Min(value = 1, message = "Must have # of food courses between 1 and 3")
+    @Max(value = 3, message = "Must have # of food courses between 1 and 3")
+    private Integer numOfFoodCourses;
+
+    public Event(String name, String description, String contactEmail, String location, Integer numOfAttendees) {
+        this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
+        this.location = location;
+        this.numOfAttendees = numOfAttendees;
+
+    }
+
+    public Event(){
         this.id = nextId;
         nextId++;
     }
 
-    public Event(){}
+    public boolean isShouldRegister() {
+        return shouldRegister;
+    }
+
+    public void setShouldRegister(boolean shouldRegister) {
+        this.shouldRegister = shouldRegister;
+    }
 
     public String getName() {
         return name;
@@ -52,6 +86,30 @@ public class Event {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Integer getNumOfAttendees() {
+        return numOfAttendees;
+    }
+
+    public void setNumOfAttendees(Integer numOfAttendees) {
+        this.numOfAttendees = numOfAttendees;
+    }
+
+    public Integer getNumOfFoodCourses() {
+        return numOfFoodCourses;
+    }
+
+    public void setNumOfFoodCourses(Integer numOfFoodCourses) {
+        this.numOfFoodCourses = numOfFoodCourses;
     }
 
     public int getId() {
