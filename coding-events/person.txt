@@ -1,0 +1,21 @@
+//18.6. Exercises: The Early Bird Gets the ORM!
+
+1. You need to add a Person class to hold necessary info about users of our app.
+ What fields and methods would this class hold?
+2. Would you need to add any additional classes to Person to make the app work?
+ If so, what classes would be necessary?
+ 3.What kinds of relationships would Person have to the other classes you already created, such as the Event class?
+
+Person class
+
+Fields:
+- Name
+- Email
+- Password
+- List Of Events (Event class) : Many to Many
+- Favorite Category (EventCategory class) :One to Many
+
+
+
+
+
