@@ -14,9 +14,6 @@ package org.launchcode.codingevents.controllers;
 
         import javax.validation.Valid;
 
-/**
- * Created by Chris Bay
- */
 @Controller
 @RequestMapping("tags")
 public class TagController {
